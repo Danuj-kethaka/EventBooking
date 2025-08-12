@@ -1,0 +1,34 @@
+<section class="bookings-section">
+  <h2>My Bookings</h2>
+  
+  <div class="login-prompt" *ngIf="!isLoggedIn">
+    <div class="login-message">
+      <p>You need to log in to view your bookings</p>
+      <div class="auth-actions">
+        <button class="btn btn-primary" (click)="login()">Log In</button>
+        <button class="btn btn-secondary" (click)="signup()">Sign Up</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isLoggedIn && bookings.length === 0" class="no-bookings">
+    <p>You haven't made any bookings yet.</p>
+    <a routerLink="/events" class="btn btn-primary">Browse Events</a>
+  </div>
+  
+  <div *ngIf="isLoggedIn && bookings.length > 0" class="bookings-list">
+    <!-- Existing bookings list -->
+    <div class="booking-card" *ngFor="let booking of bookings">
+      <div class="booking-info">
+        <h3>{{ booking.eventTitle }}</h3>
+        <p class="booking-date">{{ booking.eventDate | date }}</p>
+        <p class="booking-meta">{{ booking.tickets }} ticket(s) • ${{ booking.totalPrice }}</p>
+        <p class="booking-status">Status: {{ booking.status }}</p>
+      </div>
+      <div class="booking-actions">
+        <button class="btn btn-secondary">Cancel</button>
+        <button class="btn btn-primary">View Details</button>
+      </div>
+    </div>
+  </div>
+</section>

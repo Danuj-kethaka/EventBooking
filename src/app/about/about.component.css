@@ -1,0 +1,315 @@
+/* Modern About Section Styles */
+.about-section {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.about-hero {
+  background: linear-gradient(135deg, #b9bbc8 0%, #5398d1 100%);
+  color: white;
+  padding: 5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+ 
+  opacity: 0.1;
+}
+
+.hero-content {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: fadeInDown 1s ease;
+}
+
+.tagline {
+  font-size: 1.5rem;
+  opacity: 0.9;
+  animation: fadeIn 1.5s ease;
+}
+
+.about-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.about-intro {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.about-intro h2 {
+  font-size: 2.5rem;
+  color: #3f51b5;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.about-intro h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: #3f51b5;
+  border-radius: 2px;
+}
+
+.about-intro .lead {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  color: #444;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 4rem 0;
+  gap: 2rem;
+}
+
+.stat-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  text-align: center;
+  min-width: 200px;
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-10px);
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 1.1rem;
+  color: #000000;
+}
+
+.about-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 5rem 0;
+}
+
+.feature {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.feature h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.feature p, .feature li {
+  line-height: 1.7;
+  color: #555;
+}
+
+.feature ul {
+  padding-left: 1.2rem;
+}
+
+.feature li {
+  margin-bottom: 0.5rem;
+}
+
+.team-section {
+  margin-top: 6rem;
+  text-align: center;
+}
+
+.team-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #3f51b5;
+}
+
+.team-members {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.team-member {
+  width: 200px;
+}
+
+.member-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #eee;
+  margin: 0 auto 1.5rem;
+  background-size: cover;
+  border: 5px solid #3f51b5;
+}
+
+.team-member h4 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.team-member p {
+  color: #666;
+  font-style: italic;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+  
+  .tagline {
+    font-size: 1.2rem;
+  }
+  
+  .stats-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .about-features {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.member-photo.alex {
+  background-image: url('/assets/images/user/user1.jpg'); 
+  background-size: cover;
+  background-position: center;
+}
+
+.member-photo.sarah {
+  background-image: url('/assets/images/user/user2.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.member-photo.michael {
+  background-image: url('/assets/images/user/user3.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Add these to your existing CSS */
+.slide-initial {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.6s ease-out;
+}
+
+.slide-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Delay animations for each section */
+.about-hero.slide-in {
+  transition-delay: 0.1s;
+}
+
+.about-intro.slide-in {
+  transition-delay: 0.2s;
+}
+
+.stats-container.slide-in {
+  transition-delay: 0.3s;
+}
+
+.about-features.slide-in {
+  transition-delay: 0.4s;
+}
+
+.team-section.slide-in {
+  transition-delay: 0.5s;
+}
+
+
+
+.team-members.slide-in .team-member:nth-child(1) {
+  transition-delay: 0.5s;
+}
+
+.team-members.slide-in .team-member:nth-child(2) {
+  transition-delay: 0.7s;
+}
+
+.team-members.slide-in .team-member:nth-child(3) {
+  transition-delay: 0.9s;
+}
+
+.team-members.slide-in .team-member {
+  opacity: 1;
+  transform: translateX(0);
+}

@@ -1,0 +1,116 @@
+<div class="home-container">
+
+<!-- Hero Slider Section -->
+<section class="hero-slider">
+  <div class="slides-container">
+    <div class="slide" 
+         [class.active]="currentSlide === 0" 
+         style="background-image: url('assets/images/hero1.jpg')">
+      <div class="slide-content left-align">
+        <h1>{{slides[0].title}}</h1>
+        <p>{{slides[0].text}}</p>
+        <a routerLink="/events" class="btn btn-primary">Browse Events</a>
+      </div>
+    </div>
+    <div class="slide" 
+         [class.active]="currentSlide === 1" 
+         style="background-image: url('assets/images/hero3.jpeg')">
+      <div class="slide-content left-align">
+        <h1>{{slides[1].title}}</h1>
+        <p>{{slides[1].text}}</p>
+        <a routerLink="/events" class="btn btn-primary">View Offers</a>
+      </div>
+    </div>
+    <div class="slide" 
+         [class.active]="currentSlide === 2" 
+         style="background-image: url('assets/images/hero2.jpg')">
+      <div class="slide-content left-align">
+        <h1>{{slides[2].title}}</h1>
+        <p>{{slides[2].text}}</p>
+        <a routerLink="/events" class="btn btn-primary">Get Started</a>
+      </div>
+    </div>
+  </div>
+  <div class="slider-controls">
+    <button class="prev" (click)="prevSlide()">❮</button>
+    <div class="dots">
+      <span *ngFor="let slide of slides; let i = index" 
+            [class.active]="i === currentSlide" 
+            (click)="goToSlide(i)"></span>
+    </div>
+    <button class="next" (click)="nextSlide()">❯</button>
+  </div>
+</section>
+
+  <!-- Quick Stats Section -->
+  <section class="stats-section">
+  <div class="stat-item">
+    <h3>{{stats.events.toLocaleString()}}+</h3>
+    <p>Events Listed</p>
+  </div>
+  <div class="stat-item">
+    <h3>{{stats.customers.toLocaleString()}}+</h3>
+    <p>Happy Customers</p>
+  </div>
+  <div class="stat-item">
+    <h3>{{stats.cities}}+</h3>
+    <p>Cities Covered</p>
+  </div>
+</section>
+
+  <!-- Featured Events Section -->
+  <section class="featured-events" [class.animated]="eventsAnimated">
+  <h2>Featured Events</h2>
+  <div class="events-grid">
+    <div class="event-card" *ngFor="let event of featuredEvents; let i = index">
+      <div class="event-image" [style.background-image]="'url(' + event.image + ')'"></div>
+      <div class="event-details">
+        <h3>{{event.title}}</h3>
+        <p class="date">{{event.date}}</p>
+        <p class="location">{{event.location}}</p>
+        <a href="#" class="btn btn-outline">View Details</a>
+      </div>
+    </div>
+  </div>
+  <a routerLink="/events" class="btn btn-view-all">View All</a>
+</section>
+
+  <!-- Testimonials Section -->
+ <section class="testimonials">
+  <h2>What Our Customers Say</h2>
+  <div class="testimonial-slider">
+    <div class="testimonial" 
+         *ngFor="let testimonial of testimonials; let i = index"
+         [class.active]="i === currentTestimonial">
+      <p>"{{testimonial.quote}}"</p>
+      <div class="author">
+        <img [src]="testimonial.image" [alt]="testimonial.name">
+        <div>
+          <h4>{{testimonial.name}}</h4>
+          <p>{{testimonial.role}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="testimonial-dots">
+    <span *ngFor="let t of testimonials; let i = index" 
+          [class.active]="i === currentTestimonial"
+          (click)="goToTestimonial(i)"></span>
+  </div>
+</section>
+
+  <!-- Newsletter Section -->
+  <section class="newsletter">
+  <div class="newsletter-content">
+    <h2>Stay Updated</h2>
+    <p>Subscribe to our newsletter for the latest events and offers</p>
+    <form>
+      <input type="email" placeholder="Your email address">
+      <button type="submit" class="btn btn-join">Join Now</button>
+    </form>
+  </div>
+  <div class="developer-credit">
+    <p>Website developed by <strong>Kethaka Senanayake</strong> | +94 71 408 1163</p>
+  </div>
+</section>
+</div>

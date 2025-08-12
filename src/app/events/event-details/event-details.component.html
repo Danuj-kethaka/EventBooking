@@ -1,0 +1,50 @@
+<section class="event-details-section">
+  <div class="event-header">
+    <h1>{{ event.title }}</h1>
+    <p class="event-meta">{{ event.date | date }} • {{ event.location }}</p>
+  </div>
+  
+  <div class="event-content">
+    <div class="event-image">
+      <img [src]="event.imageUrl" [alt]="event.title">
+    </div>
+    
+    <div class="event-info">
+      <div class="event-description">
+        <h3>About the Event</h3>
+        <p>{{ event.description }}</p>
+      </div>
+      
+      <div class="event-details">
+        <h3>Details</h3>
+        <div class="detail-item">
+          <span class="detail-label">Organizer:</span>
+          <span>{{ event.organizer }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Category:</span>
+          <span>{{ event.category }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Capacity:</span>
+          <span>{{ event.capacity }} people</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Price:</span>
+          <span>${{ event.price }}</span>
+        </div>
+      </div>
+      
+      <div class="booking-form">
+        <h3>Book Tickets</h3>
+        <form>
+          <div class="form-group">
+            <label for="tickets">Number of Tickets</label>
+            <input type="number" id="tickets" min="1" max="10" value="1">
+          </div>
+          <button type="submit" class="btn">Book Now</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
