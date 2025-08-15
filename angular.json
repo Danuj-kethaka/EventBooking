@@ -91,6 +91,19 @@
       }
     }
   },
+  {
+  "framework": "angular",
+  "buildCommand": "ng build --configuration production",
+  "outputDirectory": "dist/my-angular-website/browser",
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/((?!assets/|.*\\..*).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+
   "cli": {
     "analytics": "47dfedf8-717a-4d8e-a058-3ea75748d1c6",
     "analyticsShare": true,
