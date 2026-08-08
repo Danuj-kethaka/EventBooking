@@ -1,80 +1,36 @@
-<section class="about-section">
-  <!-- Hero Section -->
-  <div #aboutHero class="about-hero">
-    <div class="hero-content">
-      <h1>Revolutionizing Event Experiences</h1>
-      <p class="tagline">Where unforgettable moments begin with a single click</p>
+<section class="about-page">
+  <div class="about-hero">
+    <div class="hero-text">
+      <span>WHY EVENTBOOK</span>
+      <h1>We make going out feel <em>exciting again.</em></h1>
+      <p>EventBook is designed around one idea: discovering and booking a great experience should feel as enjoyable as attending it.</p>
+      <a routerLink="/events">Explore events →</a>
+    </div>
+    <div class="hero-photo">
+      <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1300&q=90" alt="Live event crowd">
+      <div class="floating-card"><strong>40K+</strong><span>happy event lovers</span></div>
     </div>
   </div>
 
-  <div class="about-content">
-    <!-- Intro Section -->
-    <div #aboutIntro class="about-intro">
-      <h2>Our Story</h2>
-      <p class="lead">Founded in 2023, our platform was born from a simple idea: event booking should be effortless, exciting, and accessible to everyone.</p>
-      <p>We've grown from a small startup to serving over 500,000 attendees across 50+ cities, connecting people with experiences that matter.</p>
+  <div class="mission">
+    <div>
+      <span class="kicker">OUR MISSION</span>
+      <h2>Turn ordinary plans into unforgettable memories.</h2>
     </div>
+    <p>We bring concerts, festivals, sports, technology, food and cultural experiences into one modern platform. From discovery to ticket confirmation, every interaction is designed to feel fast, clear and enjoyable.</p>
+  </div>
 
-    <!-- Stats Section -->
-    <div #statsContainer class="stats-container">
-      <div class="stat-card">
-        <div class="stat-value">500K+</div>
-        <div class="stat-label">Happy Attendees</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">10K+</div>
-        <div class="stat-label">Events Hosted</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">50+</div>
-        <div class="stat-label">Cities Covered</div>
-      </div>
-    </div>
+  <div class="values-grid">
+    <article *ngFor="let value of values">
+      <span>{{ value.icon }}</span>
+      <h3>{{ value.title }}</h3>
+      <p>{{ value.text }}</p>
+    </article>
+  </div>
 
-    <!-- Features Section -->
-    <div #aboutFeatures class="about-features">
-      <div class="feature">
-        <div class="feature-icon">🎯</div>
-        <h3>Our Mission</h3>
-        <p>To democratize access to events by removing barriers and creating seamless booking experiences that delight both organizers and attendees.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">👁️</div>
-        <h3>Our Vision</h3>
-        <p>To become the global heartbeat of live experiences, where every event finds its audience and every attendee discovers their next adventure.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">❤️</div>
-        <h3>Our Values</h3>
-        <ul>
-          <li><strong>Passion:</strong> We live for unforgettable experiences</li>
-          <li><strong>Innovation:</strong> Constantly evolving our platform</li>
-          <li><strong>Community:</strong> Building connections that last</li>
-          <li><strong>Trust:</strong> Your safety is our priority</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Team Section -->
-    <div #teamSection class="team-section">
-      <h2>Meet The Team</h2>
-      <div class="team-members">
-        <div class="team-member">
-          <div class="member-photo alex"></div>
-          <h4>Alex Johnson</h4>
-          <p>Founder & CEO</p>
-        </div>
-        <div class="team-member">
-          <div class="member-photo sarah"></div>
-          <h4>Sarah Chen</h4>
-          <p>Head of Product</p>
-        </div>
-        <div class="team-member">
-          <div class="member-photo michael"></div>
-          <h4>Michael Brown</h4>
-          <p>Tech Lead</p>
-        </div>
-      </div>
-    </div>
+  <div class="about-cta">
+    <span class="kicker">YOUR NEXT STORY STARTS HERE</span>
+    <h2>Don’t just make plans. Make memories.</h2>
+    <a routerLink="/events">Find an event →</a>
   </div>
 </section>

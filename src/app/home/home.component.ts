@@ -1,180 +1,90 @@
-import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+
+interface FeaturedEvent {
+  id: number;
+  title: string;
+  category: string;
+  date: string;
+  location: string;
+  price: number;
+  image: string;
+  badge?: string;
+}
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  currentSlide = 0;
-  
-  featuredEvents = [
+  searchText = '';
+  location = 'Colombo';
+
+  categories = [
+    { name: 'Music', icon: '♪', count: 128 },
+    { name: 'Sports', icon: '⚡', count: 84 },
+    { name: 'Theatre', icon: '✦', count: 53 },
+    { name: 'Food', icon: '✺', count: 67 },
+    { name: 'Business', icon: '◫', count: 42 },
+    { name: 'Festivals', icon: '☼', count: 76 }
+  ];
+
+  featuredEvents: FeaturedEvent[] = [
     {
-      title: "Music Festival",
-      date: "June 15, 2023",
-      location: "Central Park",
-      image: "assets/images/event/event1.jpg"
+      id: 1,
+      title: 'Neon Nights Music Festival',
+      category: 'Music Festival',
+      date: '24 AUG · 6:00 PM',
+      location: 'Port City Colombo',
+      price: 5500,
+      badge: 'Trending',
+      image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=85'
     },
     {
-      title: "Tech Conference",
-      date: "July 22, 2023",
-      location: "Convention Center",
-      image: "assets/images/event/event3.jpeg"
+      id: 2,
+      title: 'Future Tech Summit 2026',
+      category: 'Technology',
+      date: '31 AUG · 9:00 AM',
+      location: 'BMICH, Colombo',
+      price: 3500,
+      badge: 'Popular',
+      image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=85'
     },
     {
-      title: "Food Expo",
-      date: "August 5, 2023",
-      location: "Exhibition Hall",
-      image: "assets/images/event/event3.webp"
+      id: 3,
+      title: 'Taste of Colombo',
+      category: 'Food & Lifestyle',
+      date: '06 SEP · 4:00 PM',
+      location: 'Galle Face Green',
+      price: 1800,
+      image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=85'
+    },
+    {
+      id: 4,
+      title: 'City Lights Live',
+      category: 'Concert',
+      date: '14 SEP · 7:30 PM',
+      location: 'Nelum Pokuna',
+      price: 7200,
+      badge: 'Limited',
+      image: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=1200&q=85'
     }
   ];
 
-  slides = [
-    { title: "Discover Amazing Events", text: "Find and book the best events in your city" },
-    { title: "Exclusive Experiences", text: "Access VIP events and special offers" },
-    { title: "Create Lasting Memories", text: "Book unforgettable experiences with ease" }
+  stats = [
+    { value: '250+', label: 'Live events' },
+    { value: '40K+', label: 'Happy guests' },
+    { value: '25+', label: 'Top venues' },
+    { value: '4.9/5', label: 'Guest rating' }
   ];
 
-  // Stats animation properties
-  stats = {
-    events: 0,
-    customers: 0,
-    cities: 0
-  };
-  finalStats = {
-    events: 10000,
-    customers: 500000,
-    cities: 50
-  };
-  animationDuration = 2000;
-  statsAnimated = false;
-
-  // Featured events animation
-  eventsAnimated = false;
-
-  // Slide navigation methods
-  nextSlide() {
-    this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+  searchEvents(): void {
+    // Connect this to your event filtering or API later.
+    console.log('Searching', this.searchText, this.location);
   }
-
-  prevSlide() {
-    this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
-  }
-
-  goToSlide(index: number) {
-    this.currentSlide = index;
-  }
-
-  // Updated HostListener without $event parameter
-  @HostListener('window:scroll')
-  onWindowScroll() {
-    this.checkStatsAnimation();
-    this.checkFeaturedEventsAnimation();
-  }
-
-  checkStatsAnimation() {
-    const statsSection = document.querySelector('.stats-section');
-    if (statsSection && !this.statsAnimated) {
-      const rect = statsSection.getBoundingClientRect();
-      const isVisible = (rect.top <= window.innerHeight * 0.75) && 
-                       (rect.bottom >= window.innerHeight * 0.25);
-      
-      if (isVisible) {
-        this.animateStats();
-        this.statsAnimated = true;
-      }
-    }
-  }
-
-  checkFeaturedEventsAnimation() {
-    const featuredSection = document.querySelector('.featured-events');
-    if (featuredSection && !this.eventsAnimated) {
-      const rect = featuredSection.getBoundingClientRect();
-      const isVisible = rect.top <= window.innerHeight * 0.75;
-      
-      if (isVisible) {
-        this.eventsAnimated = true;
-      }
-    }
-  }
-
-  animateStats() {
-    const startTime = Date.now();
-    
-    const animate = () => {
-      const elapsed = Date.now() - startTime;
-      const progress = Math.min(elapsed / this.animationDuration, 1);
-      
-      this.stats.events = Math.floor(progress * this.finalStats.events);
-      this.stats.customers = Math.floor(progress * this.finalStats.customers);
-      this.stats.cities = Math.floor(progress * this.finalStats.cities);
-      
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
-    };
-    
-    requestAnimationFrame(animate);
-  }
-
-
-   // Testimonial properties
-  testimonials = [
-    {
-      quote: "The booking process was so easy and the event was amazing!",
-      name: "Sarah J.",
-      role: "Event Enthusiast",
-      image: "assets/images/user/user1.jpg"
-    },
-    {
-      quote: "Best event platform I've used. Highly recommended!",
-      name: "Michael T.",
-      role: "Music Lover",
-      image: "assets/images/user/user2.jpg"
-    },
-    {
-      quote: "Five-star experience from start to finish.",
-      name: "Emma K.",
-      role: "Frequent Attendee",
-      image: "assets/images/user/user3.jpg"
-    }
-  ];
-  currentTestimonial = 0;
-  testimonialInterval: any;
-
-  ngOnInit() {
-    this.startTestimonialRotation();
-  }
-
-  ngOnDestroy() {
-    this.stopTestimonialRotation();
-  }
-
-  startTestimonialRotation() {
-    this.testimonialInterval = setInterval(() => {
-      this.nextTestimonial();
-    }, 5000); // Change every 5 seconds
-  }
-
-  stopTestimonialRotation() {
-    if (this.testimonialInterval) {
-      clearInterval(this.testimonialInterval);
-    }
-  }
-
-  nextTestimonial() {
-    this.currentTestimonial = 
-      (this.currentTestimonial + 1) % this.testimonials.length;
-  }
-
-  goToTestimonial(index: number) {
-    this.currentTestimonial = index;
-    this.stopTestimonialRotation();
-    this.startTestimonialRotation();
-  }
-
 }

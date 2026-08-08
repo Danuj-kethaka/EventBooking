@@ -101,7 +101,10 @@
       "source": "/((?!assets/|.*\\..*).*)",
       "destination": "/index.html"
     }
-  ]
+  ],
+  "cli": {
+    "analytics": false
+  }
 }
 
   "cli": {

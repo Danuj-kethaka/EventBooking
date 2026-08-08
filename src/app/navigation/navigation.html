@@ -1,48 +1,47 @@
 <nav class="navbar">
-  <div class="container">
-    <!-- Left-aligned brand with logo -->
-    <a class="navbar-brand" routerLink="/">
-  
-  <span>Event Booking</span>
-</a>
-    
-    <!-- Center-aligned navigation links -->
-    <div class="nav-center">
-      <ul class="nav-links">
-        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
-        <li><a routerLink="/events" routerLinkActive="active">Events</a></li>
-        <li><a routerLink="/bookings" routerLinkActive="active">My Bookings</a></li>
-        <li><a routerLink="/about" routerLinkActive="active">About</a></li>
-      </ul>
-    </div>
-    
-    <!-- Right-aligned auth section -->
-    <div class="auth-section">
-      <div *ngIf="!isLoggedIn" class="auth-buttons">
-        <a routerLink="/login" class="btn btn-outline">Login</a>
-        <a routerLink="/signup" class="btn btn-primary">Sign Up</a>
-      </div>
-      
-      <div *ngIf="isLoggedIn" class="user-dropdown" (click)="toggleDropdown()">
-        <div class="user-avatar">
-          <img src="/" alt="User Avatar" class="avatar-image">
-        </div>
-        <span class="username">John Doe</span>
-        <svg class="dropdown-icon" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1L6 6L11 1" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <div class="nav-shell">
+    <a class="brand" routerLink="/" (click)="closeMobileMenu()">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 4h14a2 2 0 0 1 2 2v3a3 3 0 0 0 0 6v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a3 3 0 0 0 0-6V6a2 2 0 0 1 2-2Z"/>
+          <path d="M9 8v8M15 8v8"/>
         </svg>
-        
-        <div class="dropdown-menu" [class.show]="showDropdown">
-          <a routerLink="/profile" class="dropdown-item">
-            <i class="icon-user"></i> Profile
-          </a>
-          <a routerLink="/settings" class="dropdown-item">
-            <i class="icon-settings"></i> Settings
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="icon-logout"></i> Logout
-          </a>
+      </span>
+      <span>Event<span class="brand-accent">Book</span></span>
+    </a>
+
+    <button class="menu-toggle" type="button" (click)="toggleMobileMenu()" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-content" [class.open]="mobileMenuOpen">
+      <ul class="nav-links">
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMobileMenu()">Home</a></li>
+        <li><a routerLink="/events" routerLinkActive="active" (click)="closeMobileMenu()">Explore</a></li>
+        <li><a routerLink="/bookings" routerLinkActive="active" (click)="closeMobileMenu()">My Tickets</a></li>
+        <li><a routerLink="/about" routerLinkActive="active" (click)="closeMobileMenu()">About</a></li>
+      </ul>
+
+      <div class="auth-section">
+        <ng-container *ngIf="!isLoggedIn">
+          <a routerLink="/login" class="login-link" (click)="closeMobileMenu()">Log in</a>
+          <a routerLink="/signup" class="signup-btn" (click)="closeMobileMenu()">Get started</a>
+        </ng-container>
+
+        <div *ngIf="isLoggedIn" class="user-dropdown" (click)="toggleDropdown()">
+          <div class="user-avatar">JD</div>
+          <div class="user-copy">
+            <strong>John Doe</strong>
+            <span>My account</span>
+          </div>
+          <span class="chevron">⌄</span>
+
+          <div class="dropdown-menu" [class.show]="showDropdown">
+            <a routerLink="/profile">Profile</a>
+            <a routerLink="/settings">Settings</a>
+            <div class="divider"></div>
+            <button type="button">Log out</button>
+          </div>
         </div>
       </div>
     </div>

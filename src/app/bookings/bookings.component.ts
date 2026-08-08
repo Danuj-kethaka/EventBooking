@@ -1,38 +1,45 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 interface Booking {
   id: number;
   eventId: number;
   eventTitle: string;
   eventDate: string;
+  location: string;
   tickets: number;
   totalPrice: number;
-  bookingDate: string;
-  status: string;
+  status: 'Confirmed' | 'Pending';
+  image: string;
 }
 
 @Component({
   selector: 'app-bookings',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './bookings.component.html',
   styleUrls: ['./bookings.component.css']
 })
 export class BookingsComponent {
-  isLoggedIn = false; // Change to true when user is authenticated
-  bookings: Booking[] = []; // Empty array when not logged in
+  isLoggedIn = false;
+
+  bookings: Booking[] = [
+    {
+      id: 1,
+      eventId: 1,
+      eventTitle: 'Neon Nights Music Festival',
+      eventDate: '2026-08-24',
+      location: 'Port City Colombo',
+      tickets: 2,
+      totalPrice: 11000,
+      status: 'Confirmed',
+      image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=900&q=85'
+    }
+  ];
 
   constructor(private router: Router) {}
 
-  login() {
-    // Implement login logic or navigate to login page
-    this.router.navigate(['/login']);
-  }
-
-  signup() {
-    // Implement signup logic or navigate to signup page
-    this.router.navigate(['/signup']);
-  }
+  login(): void { this.router.navigate(['/login']); }
+  signup(): void { this.router.navigate(['/signup']); }
 }

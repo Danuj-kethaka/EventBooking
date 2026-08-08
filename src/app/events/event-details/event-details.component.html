@@ -1,50 +1,64 @@
-<section class="event-details-section">
-  <div class="event-header">
-    <h1>{{ event.title }}</h1>
-    <p class="event-meta">{{ event.date | date }} • {{ event.location }}</p>
+<section class="details-page">
+  <div class="hero-image">
+    <img [src]="event.imageUrl" [alt]="event.title">
+    <div class="hero-overlay"></div>
+    <a routerLink="/events" class="back-link">← Back to events</a>
+
+    <div class="hero-copy">
+      <span class="category">{{ event.category }}</span>
+      <h1>{{ event.title }}</h1>
+      <div class="hero-meta">
+        <span>◷ {{ event.date | date:'EEEE, MMMM d, y' }}</span>
+        <span>· {{ event.time }}</span>
+        <span>⌖ {{ event.location }}</span>
+      </div>
+    </div>
   </div>
-  
-  <div class="event-content">
-    <div class="event-image">
-      <img [src]="event.imageUrl" [alt]="event.title">
-    </div>
-    
-    <div class="event-info">
-      <div class="event-description">
-        <h3>About the Event</h3>
+
+  <div class="details-shell">
+    <main>
+      <div class="quick-info">
+        <div><span class="icon">◷</span><div><small>Date & time</small><strong>{{ event.date | date:'MMM d, y' }} · {{ event.time }}</strong></div></div>
+        <div><span class="icon">⌖</span><div><small>Location</small><strong>{{ event.location }}</strong></div></div>
+        <div><span class="icon">◎</span><div><small>Organizer</small><strong>{{ event.organizer }}</strong></div></div>
+      </div>
+
+      <section class="content-block">
+        <span class="kicker">ABOUT THIS EVENT</span>
+        <h2>An experience worth showing up for.</h2>
         <p>{{ event.description }}</p>
+      </section>
+
+      <section class="content-block highlights">
+        <span class="kicker">WHAT TO EXPECT</span>
+        <div class="highlight-grid">
+          <div><span>✦</span><strong>Live performances</strong><p>Curated artists and high-energy sets.</p></div>
+          <div><span>⌁</span><strong>Premium production</strong><p>Immersive lighting, visuals and sound.</p></div>
+          <div><span>☼</span><strong>Food & social zones</strong><p>Grab a bite and enjoy the atmosphere.</p></div>
+          <div><span>✓</span><strong>Secure entry</strong><p>Fast digital ticket validation at entry.</p></div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="booking-card">
+      <span class="availability">● Tickets available</span>
+      <h3>Reserve your spot</h3>
+      <p>General admission</p>
+
+      <div class="price-row"><span>Ticket price</span><strong>Rs. {{ event.price | number }}</strong></div>
+
+      <label>Tickets</label>
+      <div class="ticket-picker">
+        <button type="button" (click)="changeTickets(-1)">−</button>
+        <strong>{{ ticketCount }}</strong>
+        <button type="button" (click)="changeTickets(1)">+</button>
       </div>
-      
-      <div class="event-details">
-        <h3>Details</h3>
-        <div class="detail-item">
-          <span class="detail-label">Organizer:</span>
-          <span>{{ event.organizer }}</span>
-        </div>
-        <div class="detail-item">
-          <span class="detail-label">Category:</span>
-          <span>{{ event.category }}</span>
-        </div>
-        <div class="detail-item">
-          <span class="detail-label">Capacity:</span>
-          <span>{{ event.capacity }} people</span>
-        </div>
-        <div class="detail-item">
-          <span class="detail-label">Price:</span>
-          <span>${{ event.price }}</span>
-        </div>
-      </div>
-      
-      <div class="booking-form">
-        <h3>Book Tickets</h3>
-        <form>
-          <div class="form-group">
-            <label for="tickets">Number of Tickets</label>
-            <input type="number" id="tickets" min="1" max="10" value="1">
-          </div>
-          <button type="submit" class="btn">Book Now</button>
-        </form>
-      </div>
-    </div>
+
+      <div class="summary-row"><span>Subtotal</span><strong>Rs. {{ totalPrice | number }}</strong></div>
+      <div class="summary-row muted"><span>Booking fee</span><strong>Free</strong></div>
+
+      <button class="book-btn" type="button">Continue to checkout <span>→</span></button>
+      <div class="secure-note">✓ Secure checkout · Instant confirmation</div>
+    </aside>
   </div>
 </section>
